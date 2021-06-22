@@ -1,4 +1,4 @@
-const game_W = 600;
+const game_W = 1000;
 const game_H = 600;
 
 
@@ -73,6 +73,7 @@ class game {
     }
 
     update() {
+        // this.sn.dau.display();
         if (start == true && !die) {
             switch(h) {
                 case 1:
@@ -91,7 +92,7 @@ class game {
             let X_ = this.sn.dau.getX();
             let Y_ = this.sn.dau.getY();
             die = this.sn.checkDie();
-            if (X_ < 0 || X_ >= game_W / 20 || Y_ < 0 || Y_ >= game_H / 20) {
+            if (X_ < 0 || X_ >= game_H / 20 || Y_ < 0 || Y_ >= game_W / 20) {
                 die = true;
             }
             if (die == true)  {
@@ -102,7 +103,11 @@ class game {
     }
 
     draw() {
+
         this.clearScreen();
+        this.context.fillStyle = "red";
+        this.context.font = '30px serif';
+        this.context.fillText("Score: " + this.sn.getScore(), 40, 40);
         this.sn.draw();
     }
 
@@ -113,8 +118,8 @@ class game {
     }
 
     creatFood() {
-        let xx = Math.floor(Math.random() * game_W / 20);
-        let yy = Math.floor(Math.random() * game_H / 20);
+        let xx = Math.floor(Math.random() * game_H / 20);
+        let yy = Math.floor(Math.random() * game_W / 20);
         this.dd = new dot(this, xx, yy);  
         return this.dd;
     }

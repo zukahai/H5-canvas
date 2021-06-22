@@ -4,14 +4,15 @@ class snake {
         this.v = vec;
         this.dau = dau;
         this.food = food;
+        this.score = 0;
     }
 
     creatFood() {
         this.dd = new dot(this.game, 0, 0); 
         do {
             let check = true;
-            let xx = Math.floor(Math.random() * game_W / 20);
-            let yy = Math.floor(Math.random() * game_H / 20);
+            let xx = Math.floor(Math.random() * game_H / 20);
+            let yy = Math.floor(Math.random() * game_W / 20);
             this.dd = new dot(this.game, xx, yy);  
 
             for (let i = 0; i < this.v.length; i++) {
@@ -111,5 +112,13 @@ class snake {
 
     getDau() {
         return this.dau;
+    }
+
+    getScore() {
+        return this.v.length - 3;
+    }
+
+    setScore(score) {
+        this.score = score;
     }
 }
