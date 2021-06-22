@@ -26,7 +26,8 @@ class game {
 
         v[0] = new dot(this, a, b);
         v[1] = new dot(this, a, b + 1);
-        this.sn = new snake(this, v, new dot(this, a, b + 2));
+        v[2] = new dot(this, a, b + 2);
+        this.sn = new snake(this, v, new dot(this, a, b + 3));
 
         this.loop();
 
@@ -37,16 +38,28 @@ class game {
         document.addEventListener("keydown", key => {
             switch(key.keyCode) {
                 case 37:
-                    this.sn.moveLeft();
+                    if (h != 2) {
+                        start = true;
+                        h = 4;
+                    }
                     break;
                 case 38:
-                    this.sn.moveUp();
+                    if (h != 3) {
+                        start = true;
+                        h = 1;
+                    }
                     break;
                 case 39:
-                    this.sn.moveRight();
+                    if (h != 4) {
+                        start = true;
+                        h = 2;
+                    }
                     break;
                 case 40:
-                    this.sn.moveDown();
+                    if (h != 1) {
+                        start = true;
+                        h = 3;
+                    }
                     break;
             }
         })
@@ -55,12 +68,25 @@ class game {
     loop() {
         this.update();
         this.draw();
-        setTimeout(() => this.loop(), 30);
+        setTimeout(() => this.loop(), 200);
     }
 
     update() {
         if (start == true) {
-
+            switch(h) {
+                case 1:
+                    this.sn.moveUp();
+                    break;
+                case 2:
+                    this.sn.moveRight();
+                    break;
+                case 3:
+                    this.sn.moveDown();
+                    break;
+                case 4:
+                    this.sn.moveLeft();
+                    break;
+            }
         }  
     }
 
