@@ -4,7 +4,7 @@ class dot{
         this.row = row;
         this.col = col;
         this.size = game.getWidth();
-        console.log(this.size);
+        // console.log(this.size);
     }
     
     draw(k) {

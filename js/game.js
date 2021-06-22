@@ -31,6 +31,35 @@ class game {
         this.loop();
 
         this.listenKeyboard();
+        this.listenMouse();
+    }
+
+    listenMouse() {
+        document.addEventListener("mousemove", e => {
+            if (!e) e = window.event;
+            var x = e.offsetX==undefined?e.layerX:e.offsetX;
+            var y = e.offsetY==undefined?e.layerY:e.offsetY;
+
+            var Xc = this.getWidth() * 2.5;
+            var Yc = game_H - this.getWidth() * 3;
+
+            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 2.25 * this.getWidth() * this.getWidth()) {
+                console.log(x, ' ', y, ' ', Xc, ' ', Yc);
+                start = true;
+                if (Math.abs(Xc - x) > Math.abs(Yc - y)) {
+                    
+                    if (x - Xc > 0)
+                        h = 2;
+                    else
+                        h = 4;
+                } else {
+                    if (y- Yc > 0)
+                        h = 3;
+                    else
+                        h = 1;
+                }
+            }
+        }) 
     }
 
     listenKeyboard() {
@@ -104,10 +133,10 @@ class game {
 
     render() {
         this.canvas.width = document.documentElement.clientWidth * 0.7;
-        this.canvas.height = this.canvas.width * 0.6;
+        this.canvas.height = this.canvas.width * 0.7;
         if (this.canvas.height > document.documentElement.clientHeight * 0.9) {
             this.canvas.height = document.documentElement.clientHeight * 0.9;
-            this.canvas.width = this.canvas.height / 0.6;
+            this.canvas.width = this.canvas.height / 0.7;
         }
         game_W = this.canvas.width;
         game_H = this.canvas.height;
@@ -117,8 +146,16 @@ class game {
         this.clearScreen();
         this.context.fillStyle = "red";
         this.context.font = this.getWidth() + 'px serif';
-        this.context.fillText("Score: " + this.sn.getScore(), this.getWidth(), this.getWidth());
+        this.drawEcircle();
+        
         this.sn.draw();
+    }
+
+    drawEcircle() {
+        this.context.beginPath();
+        this.context.strokeStyle = '#ff0000';
+        this.context.arc(this.getWidth() * 2.5, game_H - this.getWidth() * 3, this.getWidth() * 1.5, 0, 2 * Math.PI);
+        this.context.stroke();
     }
 
     clearScreen() {
