@@ -4,7 +4,8 @@ let start = false;
 let die = false;
 let h = 2;
 let a = 5, b = 5;
-
+var im = new Image();
+im.src="remove.png";
 var v = [];
 
 class game {
@@ -25,8 +26,7 @@ class game {
 
         v[0] = new dot(this, a, b);
         v[1] = new dot(this, a, b + 1);
-        v[2] = new dot(this, a, b + 2);
-        this.sn = new snake(this, v, new dot(this, a, b + 3), this.creatFood());
+        this.sn = new snake(this, v, new dot(this, a, b + 2), this.creatFood());
 
         this.loop();
 
@@ -40,24 +40,30 @@ class game {
             var x = e.offsetX==undefined?e.layerX:e.offsetX;
             var y = e.offsetY==undefined?e.layerY:e.offsetY;
 
-            var Xc = this.getWidth() * 2.5;
-            var Yc = game_H - this.getWidth() * 3;
+            var Xc = this.getWidth() * 3.5;
+            var Yc = game_H - this.getWidth() * 3.5;
 
-            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 2.25 * this.getWidth() * this.getWidth()) {
+            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 4 * this.getWidth() * this.getWidth()) {
                 console.log(x, ' ', y, ' ', Xc, ' ', Yc);
                 start = true;
                 if (Math.abs(Xc - x) > Math.abs(Yc - y)) {
-                    
-                    if (x - Xc > 0)
-                        h = 2;
-                    else
-                        h = 4;
+                    if (x - Xc > 0) {
+                        if (h != 4)
+                            h = 2;
+                    } else {
+                        if (h != 2)
+                            h = 4;
+                    }
                 } else {
-                    if (y- Yc > 0)
-                        h = 3;
-                    else
-                        h = 1;
+                    if (y- Yc > 0) {
+                        if (h != 1)
+                            h = 3;
+                    } else {
+                        if (h != 3)
+                            h = 1;
+                    }
                 }
+                console.log(h);
             }
         }) 
     }
@@ -152,10 +158,18 @@ class game {
     }
 
     drawEcircle() {
-        this.context.beginPath();
-        this.context.strokeStyle = '#ff0000';
-        this.context.arc(this.getWidth() * 2.5, game_H - this.getWidth() * 3, this.getWidth() * 1.5, 0, 2 * Math.PI);
-        this.context.stroke();
+        // this.context.beginPath();
+        // this.context.strokeStyle = '#C0C0C0';
+        // this.context.lineWidth = 5;
+        // this.context.arc(this.getWidth() * 3.5, game_H - this.getWidth() * 3.5, this.getWidth() * 2, 0, 2 * Math.PI);
+        // this.context.stroke();
+
+        // this.context.beginPath();
+        // this.context.strokeStyle = '#C0C0C0';
+        // this.context.lineWidth = 5;
+        // this.context.arc(this.getWidth() * 3.5, game_H - this.getWidth() * 3.5, this.getWidth() * 3, 0, 2 * Math.PI);
+        // this.context.stroke();
+        this.context.drawImage(im, this.getWidth() * 0.5, game_H - this.getWidth() * 6.5, this.getWidth() * 6, this.getWidth() * 6);
     }
 
     clearScreen() {
