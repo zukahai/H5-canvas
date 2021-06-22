@@ -12,6 +12,8 @@ class dot{
         this.game.context.fillStyle = '#ffffff';
         if (k == 1) 
             this.game.context.fillStyle = '#ff0000';
+        if (k == 2) 
+            this.game.context.fillStyle = 'green';
         this.game.context.fillRect(x, y, this.size, this.size);
     }
 
@@ -23,7 +25,13 @@ class dot{
         return this.col;
     }
 
-    dislay() {
+    display() {
+        console.log(this.row, ' ', this.col);
+    }
 
+    compareDot(dd) {
+        if (this.row == dd.getX() && this.col == dd.getY())
+            return true;
+        return false;
     }
 }

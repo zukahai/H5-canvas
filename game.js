@@ -3,6 +3,7 @@ const game_H = 600;
 
 
 let start = false;
+let die = false;
 let h = 2;
 let a = 5, b = 5;
 
@@ -27,7 +28,7 @@ class game {
         v[0] = new dot(this, a, b);
         v[1] = new dot(this, a, b + 1);
         v[2] = new dot(this, a, b + 2);
-        this.sn = new snake(this, v, new dot(this, a, b + 3));
+        this.sn = new snake(this, v, new dot(this, a, b + 3), this.creatFood());
 
         this.loop();
 
@@ -72,7 +73,7 @@ class game {
     }
 
     update() {
-        if (start == true) {
+        if (start == true && !die) {
             switch(h) {
                 case 1:
                     this.sn.moveUp();
@@ -87,6 +88,14 @@ class game {
                     this.sn.moveLeft();
                     break;
             }
+            let X_ = this.sn.dau.getX();
+            let Y_ = this.sn.dau.getY();
+            die = this.sn.checkDie();
+            if (X_ < 0 || X_ >= game_W / 20 || Y_ < 0 || Y_ >= game_H / 20) {
+                die = true;
+            }
+            if (die == true) 
+                window.alert("Lose");
         }  
     }
 
@@ -99,6 +108,13 @@ class game {
         this.context.clearRect(0, 0, game_W, game_H);
         this.context.fillStyle = "#000000";
         this.context.fillRect(0, 0, game_W, game_H);
+    }
+
+    creatFood() {
+        let xx = Math.floor(Math.random() * game_W / 20);
+        let yy = Math.floor(Math.random() * game_H / 20);
+        this.dd = new dot(this, xx, yy);  
+        return this.dd;
     }
 
 }
