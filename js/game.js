@@ -43,7 +43,7 @@ class game {
             var Xc = this.getWidth() * 3.5;
             var Yc = game_H - this.getWidth() * 3.5;
 
-            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 4 * this.getWidth() * this.getWidth()) {
+            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 1 * this.getWidth() * this.getWidth()) {
                 console.log(x, ' ', y, ' ', Xc, ' ', Yc);
                 start = true;
                 if (Math.abs(Xc - x) > Math.abs(Yc - y)) {
