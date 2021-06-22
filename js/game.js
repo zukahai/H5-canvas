@@ -21,10 +21,7 @@ class game {
 
         // this.d = new dot(this, a, b);
 
-        this.canvas.width = document.documentElement.clientWidth * 0.7;
-        game_W = this.canvas.width;
-        this.canvas.height = this.canvas.width * 0.6;
-        game_H = this.canvas.height;
+        this.render();
 
         v[0] = new dot(this, a, b);
         v[1] = new dot(this, a, b + 1);
@@ -107,8 +104,12 @@ class game {
 
     render() {
         this.canvas.width = document.documentElement.clientWidth * 0.7;
-        game_W = this.canvas.width;
         this.canvas.height = this.canvas.width * 0.6;
+        if (this.canvas.height > document.documentElement.clientHeight * 0.9) {
+            this.canvas.height = document.documentElement.clientHeight * 0.9;
+            this.canvas.width = this.canvas.height / 0.6;
+        }
+        game_W = this.canvas.width;
         game_H = this.canvas.height;
     }
 
