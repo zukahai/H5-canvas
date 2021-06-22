@@ -1,12 +1,15 @@
 class dot{
-    constructor (game, x, y) {
+    constructor (game, row, col) {
         this.game = game;
-        this.y = x;
-        this.y = y;
+        this.row = row;
+        this.col = col;
+        this.size = 20;
     }
     
     draw() {
-        this.game.context.fillStyle = '#000000';
-        this.game.context.fillRect(this.x, this.y, 20, 20);
+        let x = this.col * this.size;
+        let y = this.row * this.size;
+        this.game.context.fillStyle = '#ff0000';
+        this.game.context.fillRect(x, y, this.size, this.size);
     }
 }
