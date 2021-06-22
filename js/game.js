@@ -94,8 +94,10 @@ class game {
             if (X_ < 0 || X_ >= game_W / 20 || Y_ < 0 || Y_ >= game_H / 20) {
                 die = true;
             }
-            if (die == true) 
+            if (die == true)  {
                 window.alert("Lose");
+                location.reload();
+            }
         }  
     }
 
