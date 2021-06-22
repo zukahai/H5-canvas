@@ -1,7 +1,5 @@
-const game_W = 1000;
-const game_H = 600;
-
-
+let game_W = 20;
+let game_H = 20;
 let start = false;
 let die = false;
 let h = 2;
@@ -19,11 +17,14 @@ class game {
     init() {
         this.canvas = document.createElement("canvas");
         this.context = this.canvas.getContext("2d");
-        this.canvas.width = game_W;
-        this.canvas.height = game_H;
         document.body.appendChild(this.canvas);
 
         // this.d = new dot(this, a, b);
+
+        this.canvas.width = document.documentElement.clientWidth * 0.7;
+        game_W = this.canvas.width;
+        this.canvas.height = this.canvas.width * 0.6;
+        game_H = this.canvas.height;
 
         v[0] = new dot(this, a, b);
         v[1] = new dot(this, a, b + 1);
@@ -74,6 +75,8 @@ class game {
 
     update() {
         // this.sn.dau.display();
+        // console.log('Hai');
+        this.render();
         if (start == true && !die) {
             switch(h) {
                 case 1:
@@ -92,7 +95,7 @@ class game {
             let X_ = this.sn.dau.getX();
             let Y_ = this.sn.dau.getY();
             die = this.sn.checkDie();
-            if (X_ < 0 || X_ >= game_H / 20 || Y_ < 0 || Y_ >= game_W / 20) {
+            if (X_ < 0 || X_ >= game_H / this.getWidth() || Y_ < 0 || Y_ >= game_W / this.getWidth()) {
                 die = true;
             }
             if (die == true)  {
@@ -102,12 +105,18 @@ class game {
         }  
     }
 
-    draw() {
+    render() {
+        this.canvas.width = document.documentElement.clientWidth * 0.7;
+        game_W = this.canvas.width;
+        this.canvas.height = this.canvas.width * 0.6;
+        game_H = this.canvas.height;
+    }
 
+    draw() {
         this.clearScreen();
         this.context.fillStyle = "red";
-        this.context.font = '30px serif';
-        this.context.fillText("Score: " + this.sn.getScore(), 40, 40);
+        this.context.font = this.getWidth() + 'px serif';
+        this.context.fillText("Score: " + this.sn.getScore(), this.getWidth(), this.getWidth());
         this.sn.draw();
     }
 
@@ -118,10 +127,14 @@ class game {
     }
 
     creatFood() {
-        let xx = Math.floor(Math.random() * game_H / 20);
-        let yy = Math.floor(Math.random() * game_W / 20);
+        let xx = Math.floor(Math.random() * game_H / this.getWidth());;
+        let yy = Math.floor(Math.random() * game_W / this.getWidth());
         this.dd = new dot(this, xx, yy);  
         return this.dd;
+    }
+
+    getWidth() {
+        return document.documentElement.clientWidth * 0.7 / 30;
     }
 
 }

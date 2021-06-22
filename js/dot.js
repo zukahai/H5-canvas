@@ -3,10 +3,12 @@ class dot{
         this.game = game;
         this.row = row;
         this.col = col;
-        this.size = 20;
+        this.size = game.getWidth();
+        console.log(this.size);
     }
     
     draw(k) {
+        this.size = this.game.getWidth();
         let x = this.col * this.size;
         let y = this.row * this.size;
         this.game.context.fillStyle = '#ffffff';
@@ -34,4 +36,5 @@ class dot{
             return true;
         return false;
     }
+
 }
