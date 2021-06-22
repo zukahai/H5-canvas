@@ -1,7 +1,12 @@
 const game_W = 600;
 const game_H = 600;
 
+
+let start = false;
+let h = 2;
 let a = 5, b = 5;
+
+var v = [];
 
 class game {
     constructor() {
@@ -17,7 +22,12 @@ class game {
         this.canvas.height = game_H;
         document.body.appendChild(this.canvas);
 
-        this.d = new dot(this, a, b);
+        // this.d = new dot(this, a, b);
+
+        v[0] = new dot(this, a, b);
+        v[1] = new dot(this, a, b + 1);
+        this.sn = new snake(this, v, new dot(this, a, b + 2));
+
         this.loop();
 
         this.listenKeyboard();
@@ -27,16 +37,16 @@ class game {
         document.addEventListener("keydown", key => {
             switch(key.keyCode) {
                 case 37:
-                    b--;
+                    this.sn.moveLeft();
                     break;
                 case 38:
-                    a--;
+                    this.sn.moveUp();
                     break;
                 case 39:
-                    b++;
+                    this.sn.moveRight();
                     break;
                 case 40:
-                    a++;
+                    this.sn.moveDown();
                     break;
             }
         })
@@ -49,12 +59,14 @@ class game {
     }
 
     update() {
-        this.d = new dot(this, a, b);
-        this.clearScreen();
+        if (start == true) {
+
+        }  
     }
 
     draw() {
-        this.d.draw();
+        this.clearScreen();
+        this.sn.draw();
     }
 
     clearScreen() {

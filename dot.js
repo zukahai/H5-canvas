@@ -6,10 +6,24 @@ class dot{
         this.size = 20;
     }
     
-    draw() {
+    draw(k) {
         let x = this.col * this.size;
         let y = this.row * this.size;
-        this.game.context.fillStyle = '#ff0000';
+        this.game.context.fillStyle = '#ffffff';
+        if (k == 1) 
+            this.game.context.fillStyle = '#ff0000';
         this.game.context.fillRect(x, y, this.size, this.size);
+    }
+
+    getX() {
+        return this.row;
+    }
+
+    getY() {
+        return this.col;
+    }
+
+    dislay() {
+
     }
 }
