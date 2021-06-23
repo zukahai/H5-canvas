@@ -191,7 +191,7 @@ class game {
         this.clearScreen();
         this.context.fillStyle = "red";
         this.context.font = this.getWidth() + 'px serif';
-        this.context.fillText("Score:" + this.sn.getScore(), this.getWidth(), this.getWidth());
+        this.context.fillText("Score: " + this.sn.getScore(), this.getWidth(), this.getWidth());
         this.drawEcircle();
         
         this.sn.draw();
