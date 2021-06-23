@@ -181,8 +181,8 @@ class game {
     }
 
     render() {
-        this.canvas.width = document.documentElement.clientWidth * 0.95;
-        this.canvas.height = document.documentElement.clientHeight * 0.95;
+        this.canvas.width = document.documentElement.clientWidth;
+        this.canvas.height = document.documentElement.clientHeight;
         game_W = this.canvas.width;
         game_H = this.canvas.height;
     }
