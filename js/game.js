@@ -38,8 +38,17 @@ class game {
     listenTouch() {
         document.addEventListener("touchmove", evt => {
             if (evt) evt = window.event;
-            var x = evt.touches[0].clientX;
-            var y = evt.touches[0].clientY;
+            var x = evt.touches[0].pageX;
+            var y = evt.touches[0].pageY;
+
+            var k = document.documentElement.clientWidth - game_W;
+            k /= 2;
+            x -= k;
+
+            // k = document.documentElement.clientHeight - game_H;
+            // k /= 2;
+            // y -= k;
+
             console.log(x, ' ' , y);
             var Xc = this.getWidth() * 3.5;
             var Yc = game_H - this.getWidth() * 3.5;
