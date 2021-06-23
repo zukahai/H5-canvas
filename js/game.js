@@ -2,6 +2,7 @@ let game_W = 20;
 let game_H = 20;
 let start = false;
 let die = false;
+let ch = true;
 let h = 2;
 let a = 5, b = 5;
 var im = new Image();
@@ -53,9 +54,10 @@ class game {
             var Xc = this.getWidth() * 3.5;
             var Yc = game_H - this.getWidth() * 3.5;
 
-            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 1 * this.getWidth() * this.getWidth()) {
+            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 1 * this.getWidth() * this.getWidth() && ch) {
                 console.log(x, ' ', y, ' ', Xc, ' ', Yc);
                 start = true;
+                ch = false;
                 if (Math.abs(Xc - x) > Math.abs(Yc - y)) {
                     if (x - Xc > 0) {
                         if (h != 4)
@@ -86,8 +88,8 @@ class game {
             var Xc = this.getWidth() * 3.5;
             var Yc = game_H - this.getWidth() * 3.5;
 
-            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 1 * this.getWidth() * this.getWidth()) {
-                console.log(x, ' ', y, ' ', Xc, ' ', Yc);
+            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 1 * this.getWidth() * this.getWidth() && ch) {
+                ch = false;
                 start = true;
                 if (Math.abs(Xc - x) > Math.abs(Yc - y)) {
                     if (x - Xc > 0) {
@@ -113,6 +115,8 @@ class game {
 
     listenKeyboard() {
         document.addEventListener("keydown", key => {
+            if (!ch)
+                return;
             switch(key.keyCode) {
                 case 37:
                     if (h != 2) {
@@ -139,6 +143,7 @@ class game {
                     }
                     break;
             }
+            ch = false;
         })
     }
 
@@ -153,6 +158,7 @@ class game {
         // console.log('Hai');
         this.render();
         if (start == true && !die) {
+            ch = true;
             switch(h) {
                 case 1:
                     this.sn.moveUp();
