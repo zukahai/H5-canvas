@@ -32,6 +32,40 @@ class game {
 
         this.listenKeyboard();
         this.listenMouse();
+        this.listenTouch();
+    }
+
+    listenTouch() {
+        document.addEventListener("touchmove", evt => {
+            if (evt) evt = window.event;
+            var x = evt.touches[0].clientX;
+            var y = evt.touches[0].clientY;
+            console.log(x, ' ' , y);
+            var Xc = this.getWidth() * 3.5;
+            var Yc = game_H - this.getWidth() * 3.5;
+
+            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 1 * this.getWidth() * this.getWidth()) {
+                console.log(x, ' ', y, ' ', Xc, ' ', Yc);
+                start = true;
+                if (Math.abs(Xc - x) > Math.abs(Yc - y)) {
+                    if (x - Xc > 0) {
+                        if (h != 4)
+                            h = 2;
+                    } else {
+                        if (h != 2)
+                            h = 4;
+                    }
+                } else {
+                    if (y- Yc > 0) {
+                        if (h != 1)
+                            h = 3;
+                    } else {
+                        if (h != 3)
+                            h = 1;
+                    }
+                }
+            }
+        })
     }
 
     listenMouse() {
