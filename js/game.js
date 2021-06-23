@@ -182,7 +182,7 @@ class game {
 
     render() {
         this.canvas.width = document.documentElement.clientWidth;
-        this.canvas.height = document.documentElement.clientHeight;
+        this.canvas.height = document.documentElement.clientHeight - 4;
         game_W = this.canvas.width;
         game_H = this.canvas.height;
     }
@@ -191,6 +191,7 @@ class game {
         this.clearScreen();
         this.context.fillStyle = "red";
         this.context.font = this.getWidth() + 'px serif';
+        this.context.fillText("Score:" + this.sn.getScore(), this.getWidth(), this.getWidth());
         this.drawEcircle();
         
         this.sn.draw();
@@ -225,7 +226,7 @@ class game {
     }
 
     getWidth() {
-        return document.documentElement.clientWidth * 0.7 / 30;
+        return document.documentElement.clientWidth  / 30;
     }
 
 }

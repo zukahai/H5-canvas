@@ -115,7 +115,7 @@ class snake {
     }
 
     getScore() {
-        return this.v.length - 3;
+        return this.v.length - 2;
     }
 
     setScore(score) {
