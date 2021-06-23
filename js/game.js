@@ -232,7 +232,8 @@ class game {
     }
 
     getWidth() {
-        return document.documentElement.clientWidth  / 30;
+        var area = document.documentElement.clientWidth * document.documentElement.clientHeight;
+        return Math.sqrt(area / 400);
     }
 
 }
