@@ -5,8 +5,11 @@ let die = false;
 let ch = true;
 let h = 2;
 let a = 5, b = 5;
+let xIM2 = 0, yIM2 = 0;
 var im = new Image();
 im.src="remove.png";
+var im2 = new Image();
+im2.src="remove2.png";
 var v = [];
 
 class game {
@@ -21,9 +24,11 @@ class game {
         this.context = this.canvas.getContext("2d");
         document.body.appendChild(this.canvas);
 
-        // this.d = new dot(this, a, b);
-
         this.render();
+        xIM2 = this.getWidth() * 2.5;
+        yIM2 = game_H - this.getWidth() * 4.5;
+
+        console.log(xIM2, ' xy ', yIM2);
 
         v[0] = new dot(this, a, b);
         v[1] = new dot(this, a, b + 1);
@@ -42,20 +47,11 @@ class game {
             var x = evt.touches[0].pageX;
             var y = evt.touches[0].pageY;
 
-            var k = document.documentElement.clientWidth - game_W;
-            k /= 2;
-            x -= k;
-
-            // k = document.documentElement.clientHeight - game_H;
-            // k /= 2;
-            // y -= k;
-
-            console.log(x, ' ' , y);
             var Xc = this.getWidth() * 3.5;
             var Yc = game_H - this.getWidth() * 3.5;
 
             if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 1 * this.getWidth() * this.getWidth() && ch) {
-                console.log(x, ' ', y, ' ', Xc, ' ', Yc);
+                // console.log(x, ' ', y, ' ', Xc, ' ', Yc);
                 start = true;
                 ch = false;
                 if (Math.abs(Xc - x) > Math.abs(Yc - y)) {
@@ -76,6 +72,22 @@ class game {
                     }
                 }
             }
+
+            xIM2 = x - this.getWidth();
+            yIM2 = y - this.getWidth();
+            this.draw();
+        })
+
+        document.addEventListener("touchstart", evt => {
+            var x = evt.touches[0].pageX;
+            var y = evt.touches[0].pageY;
+            console.log(x, ' ' , y, ' Hello');
+        })
+
+        document.addEventListener("touchend", evt => {
+            // var x = evt.touches[0].pageX;
+            // var y = evt.touches[0].pageY;
+            console.log(' bye');
         })
     }
 
@@ -216,6 +228,7 @@ class game {
         // this.context.arc(this.getWidth() * 3.5, game_H - this.getWidth() * 3.5, this.getWidth() * 3, 0, 2 * Math.PI);
         // this.context.stroke();
         this.context.drawImage(im, this.getWidth() * 0.5, game_H - this.getWidth() * 6.5, this.getWidth() * 6, this.getWidth() * 6);
+        this.context.drawImage(im2, xIM2, yIM2, this.getWidth() * 2, this.getWidth() * 2);
     }
 
     clearScreen() {
