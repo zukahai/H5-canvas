@@ -85,9 +85,8 @@ class game {
         })
 
         document.addEventListener("touchend", evt => {
-            // var x = evt.touches[0].pageX;
-            // var y = evt.touches[0].pageY;
-            console.log(' bye');
+            xIM2 = this.getWidth() * 2.5;
+            yIM2 = game_H - this.getWidth() * 4.5;
         })
     }
 
