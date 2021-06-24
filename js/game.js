@@ -14,7 +14,7 @@ im2.src="images/remove2.png";
 var bg = new Image();
 bg.src="images/bg.jpg";
 var fim = new Image();
-fim.src="images/food.png";
+fim.src="images/foods.png";
 var v = [];
 
 class game {
