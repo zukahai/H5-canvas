@@ -8,9 +8,9 @@ let a = 5, b = 5;
 let xIM2 = 0, yIM2 = 0;
 let rm = false;
 var im = new Image();
-im.src="remove.png";
+im.src="images/remove.png";
 var im2 = new Image();
-im2.src="remove2.png";
+im2.src="images/remove2.png";
 var v = [];
 
 class game {
