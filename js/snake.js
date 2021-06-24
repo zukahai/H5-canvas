@@ -11,8 +11,8 @@ class snake {
         this.dd = new dot(this.game, 0, 0); 
         do {
             let check = true;
-            let xx = Math.floor(Math.random() * game_H / this.game.getWidth());
-            let yy = Math.floor(Math.random() * game_W / this.game.getWidth());
+            let xx = Math.floor(Math.random() * (game_H - this.getWidth()) / this.game.getWidth());
+            let yy = Math.floor(Math.random() * (game_W - this.getWidth()) / this.game.getWidth());
             this.dd = new dot(this.game, xx, yy);  
 
             for (let i = 0; i < this.v.length; i++) {
