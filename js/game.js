@@ -51,7 +51,16 @@ class game {
             var Xc = this.getWidth() * 3.5;
             var Yc = game_H - this.getWidth() * 3.5;
 
-            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 1 * this.getWidth() * this.getWidth() && ch) {
+            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) > 9 * this.getWidth() * this.getWidth()) {
+                var XX = x - Xc;
+                var YY = y - Yc;
+                var HH = Math.sqrt(XX * XX + YY * YY);
+                var R = 3 * this.getWidth();
+                x = (R * XX) / HH + Xc;
+                y = (R * YY) / HH + Yc;
+            }
+
+            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 1 * this.getWidth() * this.getWidth() && ch) {
                 // console.log(x, ' ', y, ' ', Xc, ' ', Yc);
                 start = true;
                 ch = false;
@@ -87,8 +96,10 @@ class game {
             var Yc = game_H - this.getWidth() * 3.5;
             if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth()) {
                 rm = true;
+                xIM2 = x - this.getWidth();
+                yIM2 = y - this.getWidth();
+                this.draw();
             }
-            // console.log(x, ' ' , y, ' Hello');
         })
 
         document.addEventListener("touchend", evt => {
