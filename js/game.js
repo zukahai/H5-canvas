@@ -119,6 +119,28 @@ class game {
             var Xc = this.getWidth() * 3.5;
             var Yc = game_H - this.getWidth() * 3.5;
 
+            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 50 * this.getWidth() * this.getWidth()) {
+                if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 4 * this.getWidth() * this.getWidth()) {
+                    var XX = x - Xc;
+                    var YY = y - Yc;
+                    var HH = Math.sqrt(XX * XX + YY * YY);
+                    var R = 2 * this.getWidth();
+                    x = (R * XX) / HH + Xc;
+                    y = (R * YY) / HH + Yc;
+                    xIM2 = x - this.getWidth();
+                    yIM2 = y - this.getWidth();
+                    this.draw();
+                } else {
+                    xIM2 = x - this.getWidth();
+                    yIM2 = y - this.getWidth();
+                    this.draw()
+                }
+            } else {
+                xIM2 = this.getWidth() * 2.5;
+                yIM2 = game_H - this.getWidth() * 4.5;
+                this.draw();
+            }
+
             if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth() && (Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 1 * this.getWidth() * this.getWidth() && ch) {
                 ch = false;
                 start = true;
@@ -139,7 +161,7 @@ class game {
                             h = 1;
                     }
                 }
-                console.log(h);
+                // console.log(h);
             }
         }) 
     }
