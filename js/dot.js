@@ -2,7 +2,7 @@ var bd = new Image();
 bd.src="images/bodySnake.png";
 
 var he = new Image();
-he.src="images/head.png";
+he.src="images/HeadSnake.png";
 
 class dot{
     constructor (game, row, col) {
