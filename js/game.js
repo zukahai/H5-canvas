@@ -6,6 +6,7 @@ let ch = true;
 let h = 2;
 let a = 5, b = 5;
 let xIM2 = 0, yIM2 = 0;
+let rm = false;
 var im = new Image();
 im.src="remove.png";
 var im2 = new Image();
@@ -72,21 +73,28 @@ class game {
                     }
                 }
             }
-
-            xIM2 = x - this.getWidth();
-            yIM2 = y - this.getWidth();
-            this.draw();
+            if (rm == true) {
+                xIM2 = x - this.getWidth();
+                yIM2 = y - this.getWidth();
+                this.draw();
+            }
         })
 
         document.addEventListener("touchstart", evt => {
             var x = evt.touches[0].pageX;
             var y = evt.touches[0].pageY;
-            console.log(x, ' ' , y, ' Hello');
+            var Xc = this.getWidth() * 3.5;
+            var Yc = game_H - this.getWidth() * 3.5;
+            if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) <= 9 * this.getWidth() * this.getWidth()) {
+                rm = true;
+            }
+            // console.log(x, ' ' , y, ' Hello');
         })
 
         document.addEventListener("touchend", evt => {
             xIM2 = this.getWidth() * 2.5;
             yIM2 = game_H - this.getWidth() * 4.5;
+            rm = false;
         })
     }
 
