@@ -11,6 +11,10 @@ var im = new Image();
 im.src="images/remove.png";
 var im2 = new Image();
 im2.src="images/remove2.png";
+var bg = new Image();
+bg.src="images/bg.jpg";
+var fim = new Image();
+fim.src="images/food.png";
 var v = [];
 
 class game {
@@ -229,8 +233,8 @@ class game {
             let X_ = this.sn.dau.getX();
             let Y_ = this.sn.dau.getY();
             die = this.sn.checkDie();
-            if (X_ < 0 || X_ >= game_H / this.getWidth() || Y_ < 0 || Y_ >= game_W / this.getWidth()) {
-                die = true;
+            if (X_ < 0 || X_ >= game_W / this.getWidth() || Y_ < 0 || Y_ >= game_H / this.getWidth()) {
+                // die = true;
             }
             if (die == true)  {
                 window.alert("Lose");
@@ -248,11 +252,10 @@ class game {
 
     draw() {
         this.clearScreen();
-        this.context.fillStyle = "red";
-        this.context.font = this.getWidth() + 'px serif';
-        this.context.fillText("Score: " + this.sn.getScore(), this.getWidth(), this.getWidth());
         this.drawEcircle();
-        
+        this.context.fillStyle = "red";
+        this.context.font = this.getWidth() + 'px Algerian';
+        this.context.fillText("Score: " + this.sn.getScore(), this.getWidth(), this.getWidth());
         this.sn.draw();
     }
 
@@ -268,8 +271,10 @@ class game {
         // this.context.lineWidth = 5;
         // this.context.arc(this.getWidth() * 3.5, game_H - this.getWidth() * 3.5, this.getWidth() * 3, 0, 2 * Math.PI);
         // this.context.stroke();
+        this.context.drawImage(bg, 0, 0, game_W, game_H);
         this.context.drawImage(im, this.getWidth() * 0.5, game_H - this.getWidth() * 6.5, this.getWidth() * 6, this.getWidth() * 6);
         this.context.drawImage(im2, xIM2, yIM2, this.getWidth() * 2, this.getWidth() * 2);
+        this.context.drawImage(fim, this.sn.getFood().getX() * this.getWidth(), this.sn.getFood().getY() * this.getWidth(), this.getWidth(), this.getWidth());
     }
 
     clearScreen() {
@@ -279,8 +284,8 @@ class game {
     }
 
     creatFood() {
-        let xx = Math.floor(Math.random() * game_H / this.getWidth());;
-        let yy = Math.floor(Math.random() * game_W / this.getWidth());
+        let xx = Math.floor(Math.random() * (game_H - this.getWidth())/ this.getWidth());;
+        let yy = Math.floor(Math.random() * (game_W - this.getWidth())/ this.getWidth());
         this.dd = new dot(this, xx, yy);  
         return this.dd;
     }

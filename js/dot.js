@@ -16,15 +16,15 @@ class dot{
             this.game.context.fillStyle = '#ff0000';
         if (k == 2) 
             this.game.context.fillStyle = 'green';
-        this.game.context.fillRect(x, y, this.size, this.size);
+        this.game.context.fillRect(x, y, this.size + 1, this.size + 1);
     }
 
     getX() {
-        return this.row;
+        return this.col;
     }
 
     getY() {
-        return this.col;
+        return this.row;
     }
 
     display() {
@@ -32,7 +32,7 @@ class dot{
     }
 
     compareDot(dd) {
-        if (this.row == dd.getX() && this.col == dd.getY())
+        if (this.col == dd.getX() && this.row == dd.getY())
             return true;
         return false;
     }
