@@ -1,3 +1,9 @@
+var bd = new Image();
+bd.src="images/bodySnake.png";
+
+var he = new Image();
+he.src="images/head.png";
+
 class dot{
     constructor (game, row, col) {
         this.game = game;
@@ -11,12 +17,10 @@ class dot{
         this.size = this.game.getWidth();
         let x = this.col * this.size;
         let y = this.row * this.size;
-        this.game.context.fillStyle = '#ffffff';
         if (k == 1) 
-            this.game.context.fillStyle = '#ff0000';
-        if (k == 2) 
-            this.game.context.fillStyle = 'green';
-        this.game.context.fillRect(x, y, this.size + 1, this.size + 1);
+            this.game.context.drawImage(he, x, y, this.size + 1, this.size + 1);
+        if (k == 0)
+            this.game.context.drawImage(bd, x, y, this.size + 1, this.size + 1);
     }
 
     getX() {

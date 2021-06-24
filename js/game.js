@@ -211,8 +211,6 @@ class game {
     }
 
     update() {
-        // this.sn.dau.display();
-        // console.log('Hai');
         this.render();
         if (start == true && !die) {
             ch = true;
@@ -260,17 +258,6 @@ class game {
     }
 
     drawEcircle() {
-        // this.context.beginPath();
-        // this.context.strokeStyle = '#C0C0C0';
-        // this.context.lineWidth = 5;
-        // this.context.arc(this.getWidth() * 3.5, game_H - this.getWidth() * 3.5, this.getWidth() * 2, 0, 2 * Math.PI);
-        // this.context.stroke();
-
-        // this.context.beginPath();
-        // this.context.strokeStyle = '#C0C0C0';
-        // this.context.lineWidth = 5;
-        // this.context.arc(this.getWidth() * 3.5, game_H - this.getWidth() * 3.5, this.getWidth() * 3, 0, 2 * Math.PI);
-        // this.context.stroke();
         this.context.drawImage(bg, 0, 0, game_W, game_H);
         this.context.drawImage(im, this.getWidth() * 0.5, game_H - this.getWidth() * 6.5, this.getWidth() * 6, this.getWidth() * 6);
         this.context.drawImage(im2, xIM2, yIM2, this.getWidth() * 2, this.getWidth() * 2);
