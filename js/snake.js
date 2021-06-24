@@ -57,7 +57,10 @@ class snake {
             }
             v[this.v.length - 1] = this.dau;
         }
-        this.dau = new dot(this.game, this.dau.getX() - 1, this.dau.getY());
+        if (this.dau.getX() - 1 >= 0)
+            this.dau = new dot(this.game, this.dau.getX() - 1, this.dau.getY());
+        else 
+            this.dau = new dot(this.game, Math.floor(document.documentElement.clientHeight / this.game.getWidth() - 1), this.dau.getY());
     }
 
     moveDown() {
@@ -71,7 +74,10 @@ class snake {
             }
             v[this.v.length - 1] = this.dau;
         }
-        this.dau = new dot(this.game, this.dau.getX() + 1, this.dau.getY());
+        if (this.dau.getX() + 1 <= Math.floor(document.documentElement.clientHeight / this.game.getWidth() - 1))
+            this.dau = new dot(this.game, this.dau.getX() + 1, this.dau.getY());
+        else
+        this.dau = new dot(this.game, 0, this.dau.getY());
     }
 
     moveLeft() {
@@ -85,7 +91,10 @@ class snake {
             }
             v[this.v.length - 1] = this.dau;
         }
-        this.dau = new dot(this.game, this.dau.getX(), this.dau.getY() - 1);
+        if (this.dau.getY() - 1 >= 0)
+            this.dau = new dot(this.game, this.dau.getX(), this.dau.getY() - 1);
+        else 
+        this.dau = new dot(this.game, this.dau.getX(), Math.floor(document.documentElement.clientWidth / this.game.getWidth() - 1));
     }
 
     moveRight() {
@@ -99,7 +108,10 @@ class snake {
             }
             v[this.v.length - 1] = this.dau;
         }
-        this.dau = new dot(this.game, this.dau.getX(), this.dau.getY() + 1);
+        if (this.dau.getY() + 1 <= Math.floor(document.documentElement.clientWidth / this.game.getWidth() - 1))
+            this.dau = new dot(this.game, this.dau.getX(), this.dau.getY() + 1);
+        else
+        this.dau = new dot(this.game, this.dau.getX(), 0);
     }
 
     display() {
