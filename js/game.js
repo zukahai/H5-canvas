@@ -12,7 +12,7 @@ im.src="images/remove.png";
 var im2 = new Image();
 im2.src="images/remove2.png";
 var bg = new Image();
-bg.src="images/bg.jpg";
+bg.src="images/background.jpg";
 var fim = new Image();
 fim.src="images/foods.png";
 var v = [];
@@ -252,8 +252,8 @@ class game {
     draw() {
         this.clearScreen();
         this.drawEcircle();
-        this.context.fillStyle = "red";
-        this.context.font = this.getWidth() + 'px Algerian';
+        this.context.fillStyle = "#33FFFF";
+        this.context.font = this.getWidth() + 'px Stencil';
         this.context.fillText("Score: " + this.sn.getScore(), this.getWidth(), this.getWidth());
         this.sn.draw();
     }
