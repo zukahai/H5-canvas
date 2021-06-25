@@ -1,5 +1,9 @@
-var bd = new Image();
-bd.src="images/bodySnake.png";
+var bd = [];
+bd[0] = new Image();
+bd[0].src="images/bodySnake.png";
+
+bd[1] = new Image();
+bd[1].src="images/bodySnake2.png";
 
 var he = new Image();
 he.src="images/HeadSnake.png";
@@ -19,7 +23,7 @@ class dot{
         if (k == 1) 
             this.game.context.drawImage(he, x, y, this.size + 1, this.size + 1);
         if (k == 0)
-            this.game.context.drawImage(bd, x, y, this.size + 1, this.size + 1);
+            this.game.context.drawImage(bd[Math.floor(x + y + count) % 2], x, y, this.size + 1, this.size + 1);
     }
 
     getX() {

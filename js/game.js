@@ -7,6 +7,7 @@ let h = 2;
 let a = 5, b = 5;
 let xIM2 = 0, yIM2 = 0;
 let rm = false;
+let count = 0;
 var im = new Image();
 im.src="images/remove.png";
 var im2 = new Image();
@@ -210,6 +211,7 @@ class game {
 
     update() {
         this.render();
+        count++;
         if (this.sn.getFood().getX() > this.canvas.width / this.getWidth() || this.sn.getFood().getY() > this.canvas.height / this.getWidth())
             this.sn.setFood(this.sn.creatFood());
         if (start == true && !die) {
