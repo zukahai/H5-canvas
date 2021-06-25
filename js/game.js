@@ -139,6 +139,7 @@ class game {
             } else {
                 xIM2 = this.getWidth() * 2.5;
                 yIM2 = game_H - this.getWidth() * 4.5;
+                rm = false;
                 this.draw();
             }
 
@@ -239,6 +240,10 @@ class game {
         this.canvas.height = document.documentElement.clientHeight;
         game_W = this.canvas.width;
         game_H = this.canvas.height;
+        if (!rm) {
+            xIM2 = this.getWidth() * 2.5;
+            yIM2 = game_H - this.getWidth() * 4.5;
+        }
     }
 
     draw() {
