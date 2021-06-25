@@ -205,7 +205,7 @@ class game {
     loop() {
         this.update();
         this.draw();
-        setTimeout(() => this.loop(), 300);
+        setTimeout(() => this.loop(), 100);
     }
 
     update() {
