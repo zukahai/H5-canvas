@@ -14,8 +14,11 @@ var im2 = new Image();
 im2.src="images/remove2.png";
 var bg = new Image();
 bg.src="images/background.jpg";
-var fim = new Image();
-fim.src="images/foods.png";
+var fim = [];
+fim[0] = new Image();
+fim[0].src="images/food1.png";
+fim[1] = new Image();
+fim[1].src="images/food2.png";
 var v = [];
 
 class game {
@@ -264,7 +267,7 @@ class game {
         this.context.drawImage(bg, 0, 0, game_W, game_H);
         this.context.drawImage(im, this.getWidth() * 0.5, game_H - this.getWidth() * 6.5, this.getWidth() * 6, this.getWidth() * 6);
         this.context.drawImage(im2, xIM2, yIM2, this.getWidth() * 2, this.getWidth() * 2);
-        this.context.drawImage(fim, this.sn.getFood().getX() * this.getWidth(), this.sn.getFood().getY() * this.getWidth(), this.getWidth(), this.getWidth());
+        this.context.drawImage(fim[Math.floor(count) % 2], this.sn.getFood().getX() * this.getWidth(), this.sn.getFood().getY() * this.getWidth(), this.getWidth(), this.getWidth());
     }
 
     clearScreen() {
