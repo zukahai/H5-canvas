@@ -35,7 +35,8 @@ class game {
 
         v[0] = new dot(this, a, b);
         v[1] = new dot(this, a, b + 1);
-        this.sn = new snake(this, v, new dot(this, a, b + 2), this.creatFood());
+        this.sn = new snake(this, v, new dot(this, a, b + 2));
+        this.sn.setFood(this.sn.creatFood());
 
         this.loop();
 
@@ -209,6 +210,8 @@ class game {
 
     update() {
         this.render();
+        if (this.sn.getFood().getX() > this.canvas.width / this.getWidth() || this.sn.getFood().getY() > this.canvas.height / this.getWidth())
+            this.sn.setFood(this.sn.creatFood());
         if (start == true && !die) {
             ch = true;
             switch(h) {
@@ -266,13 +269,6 @@ class game {
         this.context.clearRect(0, 0, game_W, game_H);
         this.context.fillStyle = "#000000";
         this.context.fillRect(0, 0, game_W, game_H);
-    }
-
-    creatFood() {
-        let xx = Math.floor(Math.random() * (game_H - this.getWidth())/ this.getWidth());;
-        let yy = Math.floor(Math.random() * (game_W - this.getWidth())/ this.getWidth());
-        this.dd = new dot(this, xx, yy);  
-        return this.dd;
     }
 
     getWidth() {

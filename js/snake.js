@@ -1,9 +1,9 @@
 class snake {
-    constructor(game, vec, headSnake, food) {
+    constructor(game, vec, headSnake) {
         this.game = game;
         this.v = vec;
         this.headSnake = headSnake;
-        this.food = food;
+        this.food = null;
         this.score = 0;
     }
 
@@ -42,7 +42,6 @@ class snake {
         for (var i = 0; i < this.v.length; i++) {
             this.v[i].draw(0);
         }
-        // this.food.draw(2);
         this.headSnake.draw(1);
     }
 
@@ -116,6 +115,10 @@ class snake {
 
     display() {
         
+    }
+
+    setFood(food) {
+        this.food = food;
     }
 
     getVec() {
