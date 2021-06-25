@@ -1,8 +1,8 @@
 class snake {
-    constructor(game, vec, dau, food) {
+    constructor(game, vec, headSnake, food) {
         this.game = game;
         this.v = vec;
-        this.dau = dau;
+        this.headSnake = headSnake;
         this.food = food;
         this.score = 0;
     }
@@ -31,7 +31,7 @@ class snake {
 
     checkDie() {
         for (let i = 0; i < this.v.length; i++) {
-            if (this.v[i].compareDot(this.dau) == true) {
+            if (this.v[i].compareDot(this.headSnake) == true) {
                 return true;
             }
         }
@@ -43,75 +43,75 @@ class snake {
             this.v[i].draw(0);
         }
         // this.food.draw(2);
-        this.dau.draw(1);
+        this.headSnake.draw(1);
     }
 
     moveUp() {
-        if (this.dau.compareDot(this.food)) {
-            v[this.v.length] = this.dau;
+        if (this.headSnake.compareDot(this.food)) {
+            v[this.v.length] = this.headSnake;
             this.food = this.creatFood();
             this.food.display();
         } else {
             for (var i = 0; i < this.v.length - 1; i++) {
                 this.v[i] = this.v[i + 1];
             }
-            v[this.v.length - 1] = this.dau;
+            v[this.v.length - 1] = this.headSnake;
         }
-        if (this.dau.getY() - 1 >= 0)
-            this.dau = new dot(this.game, this.dau.getY() - 1, this.dau.getX());
+        if (this.headSnake.getY() - 1 >= 0)
+            this.headSnake = new dot(this.game, this.headSnake.getY() - 1, this.headSnake.getX());
         else 
-            this.dau = new dot(this.game, Math.floor(document.documentElement.clientHeight / this.game.getWidth() - 1), this.dau.getX());
+            this.headSnake = new dot(this.game, Math.floor(document.documentElement.clientHeight / this.game.getWidth() - 1), this.headSnake.getX());
     }
 
     moveDown() {
-        if (this.dau.compareDot(this.food)) {
-            v[this.v.length] = this.dau;
+        if (this.headSnake.compareDot(this.food)) {
+            v[this.v.length] = this.headSnake;
             this.food = this.creatFood();
             this.food.display();
         } else {
             for (var i = 0; i < this.v.length - 1; i++) {
                 this.v[i] = this.v[i + 1];
             }
-            v[this.v.length - 1] = this.dau;
+            v[this.v.length - 1] = this.headSnake;
         }
-        if (this.dau.getY() + 1 <= Math.floor(document.documentElement.clientHeight / this.game.getWidth() - 1))
-            this.dau = new dot(this.game, this.dau.getY() + 1, this.dau.getX());
+        if (this.headSnake.getY() + 1 <= Math.floor(document.documentElement.clientHeight / this.game.getWidth() - 1))
+            this.headSnake = new dot(this.game, this.headSnake.getY() + 1, this.headSnake.getX());
         else
-        this.dau = new dot(this.game, 0, this.dau.getX());
+        this.headSnake = new dot(this.game, 0, this.headSnake.getX());
     }
 
     moveLeft() {
-        if (this.dau.compareDot(this.food)) {
-            v[this.v.length] = this.dau;
+        if (this.headSnake.compareDot(this.food)) {
+            v[this.v.length] = this.headSnake;
             this.food = this.creatFood();
             this.food.display();
         } else {
             for (var i = 0; i < this.v.length - 1; i++) {
                 this.v[i] = this.v[i + 1];
             }
-            v[this.v.length - 1] = this.dau;
+            v[this.v.length - 1] = this.headSnake;
         }
-        if (this.dau.getX() - 1 >= 0)
-            this.dau = new dot(this.game, this.dau.getY(), this.dau.getX() - 1);
+        if (this.headSnake.getX() - 1 >= 0)
+            this.headSnake = new dot(this.game, this.headSnake.getY(), this.headSnake.getX() - 1);
         else 
-        this.dau = new dot(this.game, this.dau.getY(), Math.floor(document.documentElement.clientWidth / this.game.getWidth() - 1));
+        this.headSnake = new dot(this.game, this.headSnake.getY(), Math.floor(document.documentElement.clientWidth / this.game.getWidth() - 1));
     }
 
     moveRight() {
-        if (this.dau.compareDot(this.food)) {
-            v[this.v.length] = this.dau;
+        if (this.headSnake.compareDot(this.food)) {
+            v[this.v.length] = this.headSnake;
             this.food = this.creatFood();
             this.food.display();
         } else {
             for (var i = 0; i < this.v.length - 1; i++) {
                 this.v[i] = this.v[i + 1];
             }
-            v[this.v.length - 1] = this.dau;
+            v[this.v.length - 1] = this.headSnake;
         }
-        if (this.dau.getX() + 1 <= Math.floor(document.documentElement.clientWidth / this.game.getWidth() - 1))
-            this.dau = new dot(this.game, this.dau.getY(), this.dau.getX() + 1);
+        if (this.headSnake.getX() + 1 <= Math.floor(document.documentElement.clientWidth / this.game.getWidth() - 1))
+            this.headSnake = new dot(this.game, this.headSnake.getY(), this.headSnake.getX() + 1);
         else
-        this.dau = new dot(this.game, this.dau.getY(), 0);
+        this.headSnake = new dot(this.game, this.headSnake.getY(), 0);
     }
 
     display() {
@@ -122,8 +122,8 @@ class snake {
         return this.v;
     }
 
-    getDau() {
-        return this.dau;
+    getheadSnake() {
+        return this.headSnake;
     }
 
     getScore() {

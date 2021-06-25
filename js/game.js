@@ -33,8 +33,6 @@ class game {
         xIM2 = this.getWidth() * 2.5;
         yIM2 = game_H - this.getWidth() * 4.5;
 
-        console.log(xIM2, ' xy ', yIM2);
-
         v[0] = new dot(this, a, b);
         v[1] = new dot(this, a, b + 1);
         this.sn = new snake(this, v, new dot(this, a, b + 2), this.creatFood());
@@ -65,7 +63,6 @@ class game {
             }
 
             if ((Xc - x) * (Xc - x) + (Yc - y) * (Yc - y) >= 0 * this.getWidth() * this.getWidth() && ch) {
-                // console.log(x, ' ', y, ' ', Xc, ' ', Yc);
                 start = true;
                 ch = false;
                 if (Math.abs(Xc - x) > Math.abs(Yc - y)) {
@@ -165,7 +162,6 @@ class game {
                             h = 1;
                     }
                 }
-                // console.log(h);
             }
         }) 
     }
@@ -228,12 +224,9 @@ class game {
                     this.sn.moveLeft();
                     break;
             }
-            let X_ = this.sn.dau.getX();
-            let Y_ = this.sn.dau.getY();
+            let X_ = this.sn.headSnake.getX();
+            let Y_ = this.sn.headSnake.getY();
             die = this.sn.checkDie();
-            if (X_ < 0 || X_ >= game_W / this.getWidth() || Y_ < 0 || Y_ >= game_H / this.getWidth()) {
-                // die = true;
-            }
             if (die == true)  {
                 window.alert("Lose");
                 location.reload();
@@ -281,7 +274,6 @@ class game {
         var area = document.documentElement.clientWidth * document.documentElement.clientHeight;
         return Math.sqrt(area / 400);
     }
-
 }
 
 var g = new game();
