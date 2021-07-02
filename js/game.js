@@ -264,7 +264,6 @@ class game {
     }
 
     drawEcircle() {
-        this.context.drawImage(bg, 0, 0, game_W, game_H);
         this.context.drawImage(im, this.getWidth() * 0.5, game_H - this.getWidth() * 6.5, this.getWidth() * 6, this.getWidth() * 6);
         this.context.drawImage(im2, xIM2, yIM2, this.getWidth() * 2, this.getWidth() * 2);
         this.context.drawImage(fim[Math.floor(count) % 2], this.sn.getFood().getX() * this.getWidth(), this.sn.getFood().getY() * this.getWidth(), this.getWidth(), this.getWidth());
@@ -272,8 +271,10 @@ class game {
 
     clearScreen() {
         this.context.clearRect(0, 0, game_W, game_H);
-        this.context.fillStyle = "#000000";
-        this.context.fillRect(0, 0, game_W, game_H);
+        if (bg.width / game_W < bg.height / game_H)
+            this.context.drawImage(bg, 0, (bg.height - game_H * (bg.width / game_W)) / 2, bg.width, game_H * (bg.width / game_W), 0, 0, game_W, game_H);
+        else
+            this.context.drawImage(bg, (bg.width - game_W * (bg.height / game_H)) / 2, 0, game_W * (bg.height / game_H), bg.height, 0, 0, game_W, game_H);
     }
 
     getWidth() {
